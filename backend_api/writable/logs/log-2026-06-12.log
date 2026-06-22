@@ -1,0 +1,713 @@
+CRITICAL - 2026-06-12 13:37:03 --> Error: Class "App\Filters\CorsFilter" not found
+[Method: GET, Route: api/kategori]
+in SYSTEMPATH\Filters\Filters.php on line 299.
+ 1 SYSTEMPATH\Filters\Filters.php(239): CodeIgniter\Filters\Filters->createFilter('App\\Filters\\CorsFilter')
+ 2 SYSTEMPATH\Filters\Filters.php(221): CodeIgniter\Filters\Filters->runBefore([...])
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('api/kategori', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 13:48:35 --> Error: Class "App\Filters\CorsFilter" not found
+[Method: GET, Route: /]
+in SYSTEMPATH\Filters\Filters.php on line 299.
+ 1 SYSTEMPATH\Filters\Filters.php(239): CodeIgniter\Filters\Filters->createFilter('App\\Filters\\CorsFilter')
+ 2 SYSTEMPATH\Filters\Filters.php(221): CodeIgniter\Filters\Filters->runBefore([...])
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 13:50:07 --> Error: Class "App\Filters\CorsFilter" not found
+[Method: GET, Route: api/kategori]
+in SYSTEMPATH\Filters\Filters.php on line 299.
+ 1 SYSTEMPATH\Filters\Filters.php(239): CodeIgniter\Filters\Filters->createFilter('App\\Filters\\CorsFilter')
+ 2 SYSTEMPATH\Filters\Filters.php(221): CodeIgniter\Filters\Filters->runBefore([...])
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('api/kategori', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 13:51:36 --> Error connecting to the database: TypeError: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ereport', '3306', '', 0)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2026-06-12 13:51:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given
+[Method: GET, Route: api/kategori]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kategori_aduan`
+ORDER BY `id` ASC', [], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 13:58:37 --> Error connecting to the database: TypeError: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ereport', '3306', '', 0)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2026-06-12 13:58:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given
+[Method: GET, Route: api/kategori]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kategori_aduan`
+ORDER BY `id` ASC', [], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 14:10:03 --> Error connecting to the database: TypeError: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ereport', '3306', '', 0)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2026-06-12 14:10:03 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given
+[Method: GET, Route: api/kategori]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kategori_aduan`
+ORDER BY `id` ASC', [], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 14:10:20 --> Error connecting to the database: TypeError: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ereport', '3306', '', 0)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `l`.*, `...', Array, false)
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\LaporanController.php(19): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `l`.*, `...', Array, false)
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\LaporanController.php(19): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2026-06-12 14:10:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given
+[Method: GET, Route: api/laporan]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `l`.*, `k`.`nama_kategori`
+FROM `laporan` `l`
+LEFT JOIN `kategori_aduan` `k` ON `k`.`id` = `l`.`kategori_id`
+ORDER BY `l`.`created_at` DESC', [], false)
+ 3 APPPATH\Controllers\LaporanController.php(19): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 6 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 14:10:36 --> Error connecting to the database: TypeError: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ereport', '3306', '', 0)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\project_UAS_web\backend_api\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\project_UAS_web\backend_api\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\project_UAS_web\backend_api\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\project_UAS_web\backend_api\app\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+#7 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+#8 C:\xampp\htdocs\project_UAS_web\backend_api\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\project_UAS_web\backend_api\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\project_UAS_web\backend_api\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\project_UAS_web\backend_api\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2026-06-12 14:10:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: mysqli::real_connect(): Argument #5 ($port) must be of type ?int, string given
+[Method: GET, Route: api/kategori]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kategori_aduan`
+ORDER BY `id` ASC', [], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\KategoriController.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\KategoriController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KategoriController))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 16:28:16 --> Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+[Method: GET, Route: api/laporan]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 2 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:16 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 4 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:16 --> [Caused by] mysqli_sql_exception: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 16:28:21 --> Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+[Method: GET, Route: api/laporan]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 2 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 4 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:21 --> [Caused by] mysqli_sql_exception: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 16:28:36 --> Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+[Method: GET, Route: api/laporan]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 2 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 4 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:28:36 --> [Caused by] mysqli_sql_exception: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 16:29:43 --> Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:29:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+[Method: GET, Route: api/laporan]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 2 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:29:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 4 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:29:43 --> [Caused by] mysqli_sql_exception: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+ERROR - 2026-06-12 16:30:57 --> Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:30:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+[Method: GET, Route: api/laporan]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 2 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 7 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:30:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 4 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')
+CRITICAL - 2026-06-12 16:30:57 --> [Caused by] mysqli_sql_exception: Table 'ereport.kategori' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT `laporan`.*, `kategori`.`nama_kategori`
+FROM `laporan`
+JOIN `kategori` ON `kategori`.`id` = `laporan`.`id_kategori`', [], false)
+ 5 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\LaporanController.php(16): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\LaporanController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\project_UAS_web\\backend_api\\public\\index.php')

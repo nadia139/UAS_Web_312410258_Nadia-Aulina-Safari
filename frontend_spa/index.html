@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Report | Sistem Pengaduan Masyarakat</title>
+    
+    <!-- Vue 3 + Router + Axios -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{font-family:'Poppins',sans-serif}
+body{background:#f8fafc}
+.fade-in{animation:fadeIn .6s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.gradient-bg{background:linear-gradient(135deg,#60a5fa 0%,#7dd3fc 45%,#c4b5fd 100%)}
+.card-hover{transition:all .35s ease;border-radius:24px}
+.card-hover:hover{transform:translateY(-8px);box-shadow:0 20px 35px rgba(0,0,0,.08)}
+.btn-primary{background:linear-gradient(135deg,#60a5fa,#8b5cf6);transition:.3s;border-radius:14px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 15px 30px rgba(99,102,241,.25)}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(5px);z-index:100;display:flex;align-items:center;justify-content:center}
+.modal-box{background:white;border-radius:28px;padding:2rem;width:100%;max-width:650px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,.12)}
+</style>
+
+</head>
+<body class="bg-[#fafafa]">
+    <div id="app">
+
+        <!-- Navbar -->
+
+<div class="flex min-h-screen">
+
+    <!-- SIDEBAR -->
+    <aside class="w-72 gradient-bg text-white fixed left-0 top-0 h-screen shadow-2xl">
+
+        <div class="p-6 border-b border-white/20">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+                    📋
+                </div>
+
+                <div>
+                    <h1 class="font-bold text-xl">
+                        E-Report
+                    </h1>
+
+                    <p class="text-xs opacity-80">
+                        Sistem Pengaduan Masyarakat
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="p-4 space-y-2">
+
+            <router-link
+                to="/"
+                class="block px-4 py-3 rounded-xl hover:bg-white/20 transition">
+                🏠 Beranda
+            </router-link>
+
+            <router-link
+                to="/laporan"
+                class="block px-4 py-3 rounded-xl hover:bg-white/20 transition">
+                📋 Laporan
+            </router-link>
+
+            <router-link
+                v-if="isLoggedIn"
+                to="/kategori"
+                class="block px-4 py-3 rounded-xl hover:bg-white/20 transition">
+                🏷️ Kategori
+            </router-link>
+
+            <router-link
+                v-if="!isLoggedIn"
+                to="/login"
+                class="block px-4 py-3 rounded-xl hover:bg-white/20 transition">
+                🔐 Login
+            </router-link>
+
+            <a
+                v-if="isLoggedIn"
+                href="#"
+                @click.prevent="logout"
+                class="block px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 transition">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTENT -->
+    <div class="ml-72 flex-1">
+
+        <main class="p-8">
+            <router-view></router-view>
+        </main>
+
+        <footer class="bg-white border-t py-6 text-center">
+            <p>© 2026 E-Report System</p>
+        </footer>
+
+    </div>
+
+</div>
+
+    </div>
+
+    <script>
+        // ===== KONFIGURASI AXIOS =====
+        // PENTING: sesuaikan path ini dengan struktur folder kamu di htdocs
+        const SERVER_ROOT = 'http://localhost/project_UAS_web/backend_api/public';
+        // Menyertakan index.php karena mod_rewrite Apache belum aktif
+        const API_BASE = SERVER_ROOT + '/index.php';
+        // Untuk file statis (gambar), TIDAK pakai index.php
+        const FILE_BASE = SERVER_ROOT;
+        axios.defaults.baseURL = API_BASE;
+
+        // State login global & reaktif (menghindari reload halaman penuh)
+        const authState = Vue.reactive({
+            isLoggedIn: localStorage.getItem('isLoggedIn') === 'true'
+        });
+
+        // Request Interceptor: injeksi token otomatis
+        axios.interceptors.request.use(config => {
+            const token = localStorage.getItem('token');
+            if (token) config.headers['Authorization'] = 'Bearer ' + token;
+            return config;
+        });
+
+        // Response Interceptor: tangkap 401 global
+        axios.interceptors.response.use(
+            response => response,
+            error => {
+                if (error.response?.status === 401) {
+                    localStorage.clear();
+                    authState.isLoggedIn = false;
+                    alert('⏰ Sesi habis! Silakan login kembali.');
+                    if (window.location.hash !== '#/login') {
+                        window.location.hash = '#/login';
+                    }
+                }
+                return Promise.reject(error);
+            }
+        );
+    </script>
+
+    <!-- ===== COMPONENTS ===== -->
+    <script>
+        // ===== HOME COMPONENT =====
+        const Home = {
+            template: `
+                <div class="fade-in">
+                    <div class="gradient-bg rounded-2xl text-white p-12 text-center shadow-2xl mb-12">
+                        <div class="text-6xl mb-4">📋</div>
+                        <h1 class="text-4xl font-bold mb-2">E-Report</h1>
+                        <p class="text-xl opacity-90">Sistem Pengaduan Layanan Masyarakat</p>
+                        <router-link to="/login" class="inline-block mt-6 bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">🔐 Login Admin</router-link>
+                    </div>
+
+                    <!-- Ringkasan Total Data (Publik, tanpa login) -->
+                    <h2 class="text-xl font-bold text-gray-700 mb-4">📊 Ringkasan Data Pengaduan</h2>
+                    <div class="grid md:grid-cols-4 gap-4 mb-12">
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+                            <p class="text-gray-500 text-sm mb-1">Total Laporan</p>
+                            <p class="text-3xl font-bold text-blue-600">{{ loading ? '...' : (stats.total_laporan || 0) }}</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+                            <p class="text-gray-500 text-sm mb-1">⏳ Menunggu</p>
+                            <p class="text-3xl font-bold text-yellow-600">{{ loading ? '...' : (stats.menunggu || 0) }}</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+                            <p class="text-gray-500 text-sm mb-1">🔄 Diproses</p>
+                            <p class="text-3xl font-bold text-orange-600">{{ loading ? '...' : (stats.diproses || 0) }}</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+                            <p class="text-gray-500 text-sm mb-1">✅ Selesai</p>
+                            <p class="text-3xl font-bold text-green-600">{{ loading ? '...' : (stats.selesai || 0) }}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover"><div class="text-4xl mb-2">📝</div><h3 class="font-bold">Laporkan</h3><p class="text-gray-600 text-sm">Sampaikan aduan dengan mudah</p></div>
+                        <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover"><div class="text-4xl mb-2">⚡</div><h3 class="font-bold">Tindak Lanjut</h3><p class="text-gray-600 text-sm">Laporan diproses cepat</p></div>
+                        <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 card-hover"><div class="text-4xl mb-2">✅</div><h3 class="font-bold">Selesai</h3><p class="text-gray-600 text-sm">Pantau status laporan</p></div>
+                    </div>
+                </div>
+            `,
+            data() {
+                return { stats: {}, loading: true };
+            },
+            async mounted() {
+                try {
+                    // Endpoint publik, tidak butuh token/login
+                    const res = await axios.get('/api/stats');
+                    if (res.data.status === 200) this.stats = res.data.data;
+                } catch (e) {
+                    console.error('Gagal memuat statistik publik:', e);
+                } finally {
+                    this.loading = false;
+                }
+            }
+        };
+
+        // ===== LOGIN COMPONENT =====
+        const Login = {
+            template: `
+                <div class="max-w-md mx-auto fade-in">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <div class="text-center mb-6">
+                            <div class="gradient-bg w-16 h-16 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">🔐</div>
+                            <h2 class="text-2xl font-bold">Login Admin</h2>
+                        </div>
+                        <div v-if="errorMsg" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded mb-4">{{ errorMsg }}</div>
+                        <form @submit.prevent="doLogin">
+                            <input type="email" v-model="form.email" placeholder="Email" class="w-full border rounded-xl p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="password" v-model="form.password" placeholder="Password" class="w-full border rounded-xl p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <button type="submit" :disabled="loading" class="btn-primary w-full text-white font-semibold py-3 rounded-xl">
+                                {{ loading ? 'Memproses...' : 'Login' }}
+                            </button>
+                        </form>
+                        <p class="text-xs text-gray-400 text-center mt-4">Demo: admin@ereport.id / admin123</p>
+                    </div>
+                </div>
+            `,
+            data() { return { form: { email: '', password: '' }, errorMsg: '', loading: false }; },
+            methods: {
+                async doLogin() {
+                    this.loading = true;
+                    try {
+                        const res = await axios.post('/api/auth/login', this.form);
+                        if (res.data.status === 200) {
+                            localStorage.setItem('isLoggedIn', 'true');
+                            localStorage.setItem('token', res.data.data.token);
+                            localStorage.setItem('adminNama', res.data.data.nama);
+                            authState.isLoggedIn = true;
+                            this.$router.push('/dashboard');
+                        }
+                    } catch (err) {
+                        this.errorMsg = err.response?.data?.message || 'Login gagal. Periksa email dan password.';
+                    } finally { this.loading = false; }
+                }
+            }
+        };
+
+        // ===== DASHBOARD COMPONENT =====
+        const Dashboard = {
+            template: `
+                <div class="fade-in">
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white mb-6">
+                        <h2 class="text-2xl font-bold">👋 Selamat Datang, {{ adminName }}</h2>
+                        <p class="opacity-90">Dashboard monitoring laporan masyarakat</p>
+                    </div>
+                    <div class="grid md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100"><p class="text-gray-500 text-sm">Total Laporan</p><p class="text-2xl font-bold text-blue-600">{{ stats.total_laporan || 0 }}</p></div>
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100"><p class="text-gray-500 text-sm">Menunggu</p><p class="text-2xl font-bold text-yellow-600">{{ stats.menunggu || 0 }}</p></div>
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100"><p class="text-gray-500 text-sm">Diproses</p><p class="text-2xl font-bold text-orange-600">{{ stats.diproses || 0 }}</p></div>
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100"><p class="text-gray-500 text-sm">Selesai</p><p class="text-2xl font-bold text-green-600">{{ stats.selesai || 0 }}</p></div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                        <h3 class="font-bold mb-3">📰 Laporan Terbaru</h3>
+                        <div v-for="l in stats.laporan_terbaru" :key="l.id" class="border-b py-2 last:border-0">
+                            <p class="font-medium text-gray-800">{{ l.judul_laporan }}</p>
+                            <div class="flex gap-2 mt-1">
+                                <small class="text-gray-500">{{ l.nama_pelapor }}</small>
+                                <span :class="statusClass(l.status)" class="text-xs px-2 py-0.5 rounded-full font-medium">{{ l.status }}</span>
+                            </div>
+                        </div>
+                        <p v-if="!stats.laporan_terbaru || stats.laporan_terbaru.length === 0" class="text-gray-400 text-sm">Belum ada laporan.</p>
+                    </div>
+                </div>
+            `,
+            data() { return { stats: {}, adminName: localStorage.getItem('adminNama') || 'Admin' }; },
+            methods: {
+                statusClass(s) {
+                    return { menunggu:'bg-yellow-100 text-yellow-800', diproses:'bg-blue-100 text-blue-800', selesai:'bg-green-100 text-green-800', ditolak:'bg-red-100 text-red-800' }[s] || 'bg-gray-100 text-gray-800';
+                }
+            },
+            async mounted() {
+                try { const res = await axios.get('/api/stats'); if (res.data.status === 200) this.stats = res.data.data; } catch(e) { console.error(e); }
+            }
+        };
+
+        // ===== LAPORAN LIST COMPONENT (dengan Edit, Hapus, Gambar, Modal) =====
+        const LaporanList = {
+            template: `
+                <div class="fade-in">
+                    <!-- Header -->
+                    <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">📋 Daftar Laporan</h2>
+                            <p class="text-gray-500 text-sm mt-1">Kelola semua pengaduan masyarakat</p>
+                        </div>
+                        <button @click="bukaModalTambah" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-xl flex items-center gap-2 shadow transition">
+                            <span>+</span> Tambah Laporan
+                        </button>
+                    </div>
+
+                    <!-- Tabel -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead class="bg-gradient-to-r from-gray-100 to-gray-200">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">ID</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Pelapor</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Judul Aduan</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Kategori</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Foto Bukti</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
+                                        <th class="px-4 py-3 text-center text-sm font-semibold text-gray-600">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-if="loading">
+                                        <td colspan="7" class="text-center py-10 text-gray-400">⏳ Memuat data...</td>
+                                    </tr>
+                                    <tr v-else-if="laporanList.length === 0">
+                                        <td colspan="7" class="text-center py-10 text-gray-400">
+                                            <div class="text-4xl mb-2">📭</div>
+                                            <p>Belum ada laporan</p>
+                                        </td>
+                                    </tr>
+                                    <tr v-for="l in laporanList" :key="l.id" class="border-t hover:bg-gray-50 transition">
+                                        <td class="px-4 py-3 text-sm text-gray-600 font-mono">{{ l.id }}</td>
+                                        <td class="px-4 py-3">
+                                            <div class="font-medium text-gray-800">{{ l.nama_pelapor }}</div>
+                                            <div class="text-xs text-gray-500">{{ l.email_pelapor || '-' }}</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="font-medium text-gray-800 max-w-xs truncate">{{ l.judul_laporan }}</div>
+                                            <div class="text-xs text-gray-500 truncate max-w-xs">{{ l.isi_laporan?.substring(0,50) }}...</div>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">{{ l.nama_kategori || '-' }}</span>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <img v-if="l.gambar_bukti"
+                                                :src="FILE_BASE + '/uploads/' + l.gambar_bukti"
+                                                class="w-16 h-12 object-cover rounded-lg border border-gray-200 cursor-pointer hover:scale-105 transition"
+                                                alt="Foto Bukti"
+                                                @click="lihatGambar(l.gambar_bukti)"
+                                                title="Klik untuk perbesar">
+                                            <span v-else class="text-xs text-gray-400 italic">Tidak ada</span>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <span :class="statusClass(l.status)" class="px-2 py-1 rounded-full text-xs font-semibold">
+                                                {{ statusIcon(l.status) }} {{ l.status }}
+                                            </span>
+                                        </td>
+                                        <td class="px-4 py-3 text-center">
+                                            <div class="flex gap-2 justify-center">
+                                                <button @click="bukaModalEdit(l)" class="bg-amber-500 hover:bg-amber-600 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition">
+                                                    ✏️ Edit
+                                                </button>
+                                                <button @click="hapusLaporan(l.id)" class="bg-rose-500 hover:bg-rose-600 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition">
+                                                    🗑️ Hapus
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modal Tambah / Edit -->
+                    <div v-if="isModalOpen" class="modal-overlay" @click.self="tutupModal">
+                        <div class="modal-box fade-in">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">
+                                    {{ modalMode === 'tambah' ? '📝 Tambah Laporan' : '✏️ Edit Laporan' }}
+                                </h3>
+                                <button @click="tutupModal" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+                            </div>
+
+                            <form @submit.prevent="submitForm">
+                                <!-- Nama Pelapor -->
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pelapor <span class="text-red-500">*</span></label>
+                                    <input v-model="form.nama_pelapor" type="text" placeholder="Masukkan nama pelapor" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+
+                                <!-- No Telp & Email -->
+                                <div class="grid grid-cols-2 gap-3 mb-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">No. Telepon</label>
+                                        <input v-model="form.no_telp" type="text" placeholder="08xxxxxxxxxx" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input v-model="form.email_pelapor" type="email" placeholder="email@contoh.com" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                </div>
+
+                                <!-- Kategori -->
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Kategori <span class="text-red-500">*</span></label>
+                                    <select v-model="form.kategori_id" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        <option value="">-- Pilih Kategori --</option>
+                                        <option v-for="k in kategori" :key="k.id" :value="k.id">{{ k.nama_kategori }}</option>
+                                    </select>
+                                </div>
+
+                                <!-- Judul -->
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Judul Laporan <span class="text-red-500">*</span></label>
+                                    <input v-model="form.judul_laporan" type="text" placeholder="Judul singkat laporan" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+
+                                <!-- Isi Laporan -->
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Isi Laporan <span class="text-red-500">*</span></label>
+                                    <textarea v-model="form.isi_laporan" rows="3" placeholder="Deskripsikan laporan secara detail..." class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                                </div>
+
+                                <!-- Lokasi -->
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi</label>
+                                    <input v-model="form.lokasi" type="text" placeholder="Alamat / lokasi kejadian" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+
+                                <!-- Status (hanya saat edit) -->
+                                <div v-if="modalMode === 'edit'" class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                                    <select v-model="form.status" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="menunggu">⏳ Menunggu</option>
+                                        <option value="diproses">🔄 Diproses</option>
+                                        <option value="selesai">✅ Selesai</option>
+                                        <option value="ditolak">❌ Ditolak</option>
+                                    </select>
+                                </div>
+
+                                <!-- Catatan Admin (hanya saat edit) -->
+                                <div v-if="modalMode === 'edit'" class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Catatan Admin</label>
+                                    <textarea v-model="form.catatan_admin" rows="2" placeholder="Catatan tindak lanjut..." class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                                </div>
+
+                                <!-- Upload Gambar -->
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Foto Bukti</label>
+                                    <!-- Preview gambar lama saat edit -->
+                                    <div v-if="modalMode === 'edit' && form.gambar_lama && !previewGambar" class="mb-2">
+                                        <p class="text-xs text-gray-500 mb-1">Foto saat ini:</p>
+                                        <img :src="FILE_BASE + '/uploads/' + form.gambar_lama" class="h-24 rounded-lg border object-cover" alt="Foto lama">
+                                    </div>
+                                    <!-- Preview gambar baru -->
+                                    <div v-if="previewGambar" class="mb-2">
+                                        <p class="text-xs text-gray-500 mb-1">Preview foto baru:</p>
+                                        <img :src="previewGambar" class="h-24 rounded-lg border object-cover" alt="Preview">
+                                    </div>
+                                    <input type="file" accept="image/*" @change="handleGambar" class="w-full border border-dashed border-gray-400 rounded-xl p-2.5 text-sm text-gray-600 cursor-pointer bg-gray-50 hover:bg-gray-100">
+                                    <p class="text-xs text-gray-400 mt-1">Format: JPG, PNG, GIF. Maks 2MB. Kosongkan jika tidak ingin mengganti foto.</p>
+                                </div>
+
+                                <!-- Tombol -->
+                                <div class="flex gap-3 justify-end">
+                                    <button type="button" @click="tutupModal" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl text-gray-700 font-medium transition">
+                                        Batal
+                                    </button>
+                                    <button type="submit" :disabled="loading" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl font-medium transition">
+                                        {{ loading ? '⏳ Menyimpan...' : (modalMode === 'tambah' ? '💾 Simpan' : '✅ Update') }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal Preview Gambar -->
+                    <div v-if="previewBesar" class="modal-overlay" @click="previewBesar = null">
+                        <div class="text-center" @click.stop>
+                            <img :src="previewBesar" class="max-w-2xl max-h-screen rounded-2xl shadow-2xl" alt="Preview">
+                            <button @click="previewBesar = null" class="mt-4 bg-white text-gray-800 px-4 py-2 rounded-xl font-medium hover:bg-gray-100">
+                                ✕ Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            data() {
+                return {
+                    laporanList: [],
+                    kategori: [],
+                    loading: false,
+                    isModalOpen: false,
+                    modalMode: 'tambah',   // 'tambah' atau 'edit'
+                    editId: null,
+                    form: {
+                        nama_pelapor: '',
+                        no_telp: '',
+                        email_pelapor: '',
+                        kategori_id: '',
+                        judul_laporan: '',
+                        isi_laporan: '',
+                        lokasi: '',
+                        status: 'menunggu',
+                        catatan_admin: '',
+                        gambar_lama: null,
+                    },
+                    filGambar: null,
+                    previewGambar: null,
+                    previewBesar: null,
+                };
+            },
+            methods: {
+                statusClass(s) {
+                    return {
+                        menunggu: 'bg-yellow-100 text-yellow-800',
+                        diproses: 'bg-blue-100 text-blue-800',
+                        selesai: 'bg-green-100 text-green-800',
+                        ditolak: 'bg-red-100 text-red-800',
+                    }[s] || 'bg-gray-100 text-gray-800';
+                },
+                statusIcon(s) {
+                    return { menunggu:'⏳', diproses:'🔄', selesai:'✅', ditolak:'❌' }[s] || '📌';
+                },
+                async getLaporan() {
+                    this.loading = true;
+                    try {
+                        const res = await axios.get('/api/laporan');
+                        if (res.data.status === 200) this.laporanList = res.data.data;
+                        else this.laporanList = [];
+                    } catch(e) { console.error(e); this.laporanList = []; }
+                    finally { this.loading = false; }
+                },
+                async getKategori() {
+                    try {
+                        const res = await axios.get('/api/kategori');
+                        if (res.data.status === 200) this.kategori = res.data.data;
+                    } catch(e) { console.error(e); }
+                },
+                resetForm() {
+                    this.form = { nama_pelapor:'', no_telp:'', email_pelapor:'', kategori_id:'', judul_laporan:'', isi_laporan:'', lokasi:'', status:'menunggu', catatan_admin:'', gambar_lama:null };
+                    this.filGambar = null;
+                    this.previewGambar = null;
+                },
+                bukaModalTambah() {
+                    this.resetForm();
+                    this.editId = null;
+                    this.modalMode = 'tambah';
+                    this.isModalOpen = true;
+                },
+                bukaModalEdit(laporan) {
+                    this.resetForm();
+                    this.editId = laporan.id;
+                    this.modalMode = 'edit';
+                    this.form = {
+                        nama_pelapor: laporan.nama_pelapor || '',
+                        no_telp: laporan.no_telp || '',
+                        email_pelapor: laporan.email_pelapor || '',
+                        kategori_id: laporan.kategori_id || '',
+                        judul_laporan: laporan.judul_laporan || '',
+                        isi_laporan: laporan.isi_laporan || '',
+                        lokasi: laporan.lokasi || '',
+                        status: laporan.status || 'menunggu',
+                        catatan_admin: laporan.catatan_admin || '',
+                        gambar_lama: laporan.gambar_bukti || null,
+                    };
+                    this.filGambar = null;
+                    this.previewGambar = null;
+                    this.isModalOpen = true;
+                },
+                tutupModal() {
+                    this.isModalOpen = false;
+                },
+                handleGambar(e) {
+                    const file = e.target.files[0];
+                    if (!file) { this.filGambar = null; this.previewGambar = null; return; }
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar! Maksimal 2MB.');
+                        e.target.value = '';
+                        return;
+                    }
+                    this.filGambar = file;
+                    this.previewGambar = URL.createObjectURL(file);
+                },
+                lihatGambar(nama) {
+                    this.previewBesar = FILE_BASE + '/uploads/' + nama;
+                },
+                async submitForm() {
+                    this.loading = true;
+                    try {
+                        // Selalu gunakan FormData agar bisa kirim file
+                        const fd = new FormData();
+                        fd.append('nama_pelapor', this.form.nama_pelapor);
+                        fd.append('no_telp', this.form.no_telp);
+                        fd.append('email_pelapor', this.form.email_pelapor);
+                        fd.append('kategori_id', this.form.kategori_id);
+                        fd.append('judul_laporan', this.form.judul_laporan);
+                        fd.append('isi_laporan', this.form.isi_laporan);
+                        fd.append('lokasi', this.form.lokasi);
+                        fd.append('status', this.form.status);
+                        fd.append('catatan_admin', this.form.catatan_admin);
+                        if (this.filGambar) fd.append('gambar_bukti', this.filGambar);
+
+                        if (this.modalMode === 'tambah') {
+                            // Route: POST /api/laporan/create
+                            await axios.post('/api/laporan/create', fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+                            alert('✅ Laporan berhasil ditambahkan!');
+                        } else {
+                            // Route backend: POST /api/laporan/update/{id}
+                            // Pakai POST (bukan PUT) karena PHP tidak bisa baca file dari PUT request
+                            await axios.post(`/api/laporan/update/${this.editId}`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+                            alert('✅ Laporan berhasil diperbarui!');
+                        }
+
+                        this.tutupModal();
+                        this.getLaporan();
+                    } catch(e) {
+                        const msg = e.response?.data?.message;
+                        if (typeof msg === 'object') {
+                            alert('❌ Validasi gagal:\n' + Object.values(msg).join('\n'));
+                        } else {
+                            alert('❌ ' + (msg || 'Terjadi kesalahan.'));
+                        }
+                    } finally { this.loading = false; }
+                },
+                async hapusLaporan(id) {
+                    if (!confirm('⚠️ Yakin ingin menghapus laporan ini secara permanen?')) return;
+                    try {
+                        // Route: DELETE /api/laporan/delete/{id}
+                        await axios.delete(`/api/laporan/delete/${id}`);
+                        alert('🗑️ Laporan berhasil dihapus.');
+                        this.getLaporan();
+                    } catch(e) {
+                        alert('❌ Gagal menghapus laporan.');
+                    }
+                }
+            },
+            mounted() {
+                this.getLaporan();
+                this.getKategori();
+            }
+        };
+
+        // ===== KATEGORI LIST COMPONENT (CRUD data master kategori aduan) =====
+        const KategoriList = {
+            template: `
+                <div class="fade-in">
+                    <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">🏷️ Kelola Kategori Aduan</h2>
+                            <p class="text-gray-500 text-sm mt-1">Data master kategori pengaduan masyarakat</p>
+                        </div>
+                        <button @click="bukaModalTambah" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-xl flex items-center gap-2 shadow transition">
+                            <span>+</span> Tambah Kategori
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead class="bg-gradient-to-r from-gray-100 to-gray-200">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">ID</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Nama Kategori</th>
+                                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Deskripsi</th>
+                                        <th class="px-4 py-3 text-center text-sm font-semibold text-gray-600">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-if="loading">
+                                        <td colspan="4" class="text-center py-10 text-gray-400">⏳ Memuat data...</td>
+                                    </tr>
+                                    <tr v-else-if="kategoriList.length === 0">
+                                        <td colspan="4" class="text-center py-10 text-gray-400">
+                                            <div class="text-4xl mb-2">📭</div>
+                                            <p>Belum ada kategori</p>
+                                        </td>
+                                    </tr>
+                                    <tr v-for="k in kategoriList" :key="k.id" class="border-t hover:bg-gray-50 transition">
+                                        <td class="px-4 py-3 text-sm text-gray-600 font-mono">{{ k.id }}</td>
+                                        <td class="px-4 py-3 font-medium text-gray-800">{{ k.nama_kategori }}</td>
+                                        <td class="px-4 py-3 text-sm text-gray-600">{{ k.deskripsi || '-' }}</td>
+                                        <td class="px-4 py-3 text-center">
+                                            <div class="flex gap-2 justify-center">
+                                                <button @click="bukaModalEdit(k)" class="bg-amber-500 hover:bg-amber-600 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition">
+                                                    ✏️ Edit
+                                                </button>
+                                                <button @click="hapusKategori(k.id)" class="bg-rose-500 hover:bg-rose-600 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition">
+                                                    🗑️ Hapus
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modal Tambah / Edit Kategori -->
+                    <div v-if="isModalOpen" class="modal-overlay" @click.self="tutupModal">
+                        <div class="modal-box fade-in" style="max-width: 480px;">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">
+                                    {{ modalMode === 'tambah' ? '📝 Tambah Kategori' : '✏️ Edit Kategori' }}
+                                </h3>
+                                <button @click="tutupModal" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+                            </div>
+
+                            <form @submit.prevent="submitForm">
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Kategori <span class="text-red-500">*</span></label>
+                                    <input v-model="form.nama_kategori" type="text" placeholder="Contoh: Infrastruktur" class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+                                    <textarea v-model="form.deskripsi" rows="3" placeholder="Deskripsi singkat kategori..." class="w-full border border-gray-300 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                                </div>
+
+                                <div class="flex gap-3 justify-end">
+                                    <button type="button" @click="tutupModal" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl text-gray-700 font-medium transition">
+                                        Batal
+                                    </button>
+                                    <button type="submit" :disabled="loading2" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl font-medium transition">
+                                        {{ loading2 ? '⏳ Menyimpan...' : (modalMode === 'tambah' ? '💾 Simpan' : '✅ Update') }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            `,
+            data() {
+                return {
+                    kategoriList: [],
+                    loading: false,
+                    loading2: false,
+                    isModalOpen: false,
+                    modalMode: 'tambah',
+                    editId: null,
+                    form: { nama_kategori: '', deskripsi: '' },
+                };
+            },
+            methods: {
+                async getKategoriList() {
+                    this.loading = true;
+                    try {
+                        const res = await axios.get('/api/kategori');
+                        if (res.data.status === 200) this.kategoriList = res.data.data;
+                        else this.kategoriList = [];
+                    } catch (e) { console.error(e); this.kategoriList = []; }
+                    finally { this.loading = false; }
+                },
+                resetForm() {
+                    this.form = { nama_kategori: '', deskripsi: '' };
+                },
+                bukaModalTambah() {
+                    this.resetForm();
+                    this.editId = null;
+                    this.modalMode = 'tambah';
+                    this.isModalOpen = true;
+                },
+                bukaModalEdit(kategori) {
+                    this.editId = kategori.id;
+                    this.modalMode = 'edit';
+                    this.form = {
+                        nama_kategori: kategori.nama_kategori || '',
+                        deskripsi: kategori.deskripsi || '',
+                    };
+                    this.isModalOpen = true;
+                },
+                tutupModal() {
+                    this.isModalOpen = false;
+                },
+                async submitForm() {
+                    this.loading2 = true;
+                    try {
+                        if (this.modalMode === 'tambah') {
+                            // Backend create() menerima form-urlencoded/post biasa
+                            const fd = new FormData();
+                            fd.append('nama_kategori', this.form.nama_kategori);
+                            fd.append('deskripsi', this.form.deskripsi || '');
+                            await axios.post('/api/kategori/create', fd);
+                            alert('✅ Kategori berhasil ditambahkan!');
+                        } else {
+                            // Backend update() menerima JSON
+                            await axios.put(`/api/kategori/update/${this.editId}`, {
+                                nama_kategori: this.form.nama_kategori,
+                                deskripsi: this.form.deskripsi || '',
+                            });
+                            alert('✅ Kategori berhasil diperbarui!');
+                        }
+                        this.tutupModal();
+                        this.getKategoriList();
+                    } catch (e) {
+                        const msg = e.response?.data?.message;
+                        if (typeof msg === 'object') {
+                            alert('❌ Validasi gagal:\\n' + Object.values(msg).join('\\n'));
+                        } else {
+                            alert('❌ ' + (msg || 'Terjadi kesalahan.'));
+                        }
+                    } finally { this.loading2 = false; }
+                },
+                async hapusKategori(id) {
+                    if (!confirm('⚠️ Yakin ingin menghapus kategori ini? Laporan dengan kategori ini bisa terpengaruh.')) return;
+                    try {
+                        await axios.delete(`/api/kategori/delete/${id}`);
+                        alert('🗑️ Kategori berhasil dihapus.');
+                        this.getKategoriList();
+                    } catch (e) {
+                        alert('❌ ' + (e.response?.data?.message || 'Gagal menghapus kategori.'));
+                    }
+                }
+            },
+            mounted() {
+                this.getKategoriList();
+            }
+        };
+
+    </script>
+
+    <script>
+        // ===== ROUTER =====
+        const routes = [
+            { path: '/', component: Home },
+            { path: '/login', component: Login },
+            { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
+            { path: '/laporan', component: LaporanList, meta: { requiresAuth: true } },
+            { path: '/kategori', component: KategoriList, meta: { requiresAuth: true } },
+        ];
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes,
+        });
+
+        // Navigation Guard
+        router.beforeEach((to, from, next) => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (to.meta.requiresAuth && !isLoggedIn) {
+                alert('🔒 Akses ditolak! Silakan login terlebih dahulu.');
+                next('/login');
+            } else {
+                next();
+            }
+        });
+
+        // ===== VUE APP =====
+        const app = Vue.createApp({
+            computed: {
+                isLoggedIn() {
+                    return authState.isLoggedIn;
+                }
+            },
+            methods: {
+                logout() {
+                    if (confirm('Yakin ingin keluar?')) {
+                        localStorage.clear();
+                        authState.isLoggedIn = false;
+                        this.$router.push('/login');
+                    }
+                }
+            }
+        });
+
+        app.use(router);
+        app.mount('#app');
+    </script>
+</body>
+</html>
